@@ -214,72 +214,47 @@
 
   <!-- ===== COOKIE CONSENT BANNER ===== -->
   </main>
-  <div id="cookieBanner" role="dialog" aria-label="הודעת עוגיות" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: rgba(62,49,37,0.96); backdrop-filter: blur(10px); padding: 18px 6vw; border-top: 1px solid rgba(197,160,110,0.3); box-shadow: 0 -4px 24px rgba(0,0,0,0.18);">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-      <p style="margin: 0; font-size: 14px; color: #EDE4D5; line-height: 1.6; flex: 1; min-width: 240px;">אתר זה משתמש בעוגיות (Cookies) לשיפור חוויית הגלישה ולצרכי ניתוח סטטיסטי. המשך השימוש באתר מהווה הסכמה לשימוש בעוגיות בהתאם ל<a href="#" style="color: #D4B489; text-decoration: underline;">מדיניות הפרטיות</a>.</p>
-      <button onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookieConsent','true');" aria-label="אישור שימוש בעוגיות" style="flex: none; background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; border: none; padding: 11px 28px; border-radius: 999px; font-family: 'Assistant', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(181,137,90,0.3);">אישור</button>
+  <sc-if value="{{ !cookieConsent }}">
+    <div id="cookieBanner" role="dialog" aria-label="הודעת עוגיות" aria-modal="false" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: rgba(62,49,37,0.96); backdrop-filter: blur(10px); padding: 18px 6vw; border-top: 1px solid rgba(197,160,110,0.3); box-shadow: 0 -4px 24px rgba(0,0,0,0.18);">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+        <p style="margin: 0; font-size: 14px; color: #EDE4D5; line-height: 1.6; flex: 1; min-width: 240px;">אתר זה משתמש בעוגיות (Cookies) לשיפור חוויית הגלישה ולצרכי ניתוח סטטיסטי. המשך השימוש באתר מהווה הסכמה לשימוש בעוגיות בהתאם ל<a href="privacy-policy.html" style="color: #D4B489; text-decoration: underline;">מדיניות הפרטיות</a>.</p>
+        <button sc-camel-on-click="{{ onAcceptCookies }}" type="button" aria-label="אישור שימוש בעוגיות" style="flex: none; background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; border: none; padding: 11px 28px; border-radius: 999px; font-family: 'Assistant', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(181,137,90,0.3);">אישור</button>
+      </div>
     </div>
-  </div>
-  <script>if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieBanner').style.display='block';}</script>
+  </sc-if>
 
   <!-- ===== ACCESSIBILITY WIDGET ===== -->
   <div id="a11yWidget" style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; font-family: 'Assistant', sans-serif; direction: rtl;">
-    <button id="a11yToggle" aria-label="תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: linear-gradient(135deg,#3E3125,#5C4B3D); color: #fff; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;">
+    <button id="a11yToggle" aria-label="תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel" onclick="(function(){var panel=document.getElementById('a11yPanel');var toggle=document.getElementById('a11yToggle');var isOpen=panel&&panel.style.display==='block';var willOpen=!isOpen;panel.style.display=willOpen?'block':'none';toggle.setAttribute('aria-expanded',willOpen?'true':'false');if(willOpen){var close=document.getElementById('a11yClose');if(close)close.focus();}})();" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: linear-gradient(135deg,#3E3125,#5C4B3D); color: #fff; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2.5"/><path d="M12 7v5"/><path d="M8 10l4 2 4-2"/><path d="M9 21l3-6 3 6"/></svg>
     </button>
     <div id="a11yPanel" role="dialog" aria-label="הגדרות נגישות" aria-modal="false" style="display: none; position: absolute; bottom: 64px; left: 0; width: 290px; background: #fff; border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); padding: 0; overflow: hidden;">
       <div style="background: #3E3125; color: #fff; padding: 16px 20px; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
         <span>הגדרות נגישות</span>
-        <button id="a11yClose" aria-label="סגור תפריט נגישות" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 22px; line-height: 1; padding: 0;">✕</button>
+        <button id="a11yClose" aria-label="סגור תפריט נגישות" onclick="(function(){var panel=document.getElementById('a11yPanel');var toggle=document.getElementById('a11yToggle');if(panel)panel.style.display='none';if(toggle)toggle.setAttribute('aria-expanded','false');})();" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 22px; line-height: 1; padding: 0;">✕</button>
       </div>
       <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <span style="font-size: 15px; font-weight: 600; color: #3E3125;">גודל גופן</span>
           <div style="display: flex; gap: 6px;">
-            <button class="a11y-btn" data-action="font-decrease" aria-label="הקטנת גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א-</button>
-            <button class="a11y-btn" data-action="font-reset" aria-label="איפוס גודל גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 14px; font-weight: 700; color: #5C4B3D;">⟲</button>
-            <button class="a11y-btn" data-action="font-increase" aria-label="הגדלת גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א+</button>
+            <button class="a11y-btn" data-action="font-decrease" aria-label="הקטנת גופן" onclick="(function(){var el=document.documentElement;var lvl=parseInt(el.dataset.a11yFontLevel||'0',10);if(lvl>-2)lvl--;el.dataset.a11yFontLevel=String(lvl);el.style.fontSize=(lvl===0)?'':(100+lvl*15)+'%';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א-</button>
+            <button class="a11y-btn" data-action="font-reset" aria-label="איפוס גודל גופן" onclick="(function(){var el=document.documentElement;el.dataset.a11yFontLevel='0';el.style.fontSize='';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 14px; font-weight: 700; color: #5C4B3D;">⟲</button>
+            <button class="a11y-btn" data-action="font-increase" aria-label="הגדלת גופן" onclick="(function(){var el=document.documentElement;var lvl=parseInt(el.dataset.a11yFontLevel||'0',10);if(lvl<3)lvl++;el.dataset.a11yFontLevel=String(lvl);el.style.fontSize=(lvl===0)?'':(100+lvl*15)+'%';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א+</button>
           </div>
         </div>
-        <button class="a11y-btn" data-action="contrast" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔲 ניגודיות גבוהה</button>
-        <button class="a11y-btn" data-action="links" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔗 הדגשת קישורים</button>
-        <button class="a11y-btn" data-action="animations" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">⏸ עצירת אנימציות</button>
-        <button class="a11y-btn" data-action="readable-font" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔤 גופן קריא</button>
-        <button class="a11y-btn" data-action="big-cursor" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🖱 סמן מוגדל</button>
-        <button class="a11y-btn" data-action="reset-all" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #B5895A; background: #fff; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #B5895A; text-align: center;">איפוס כל ההגדרות</button>
+        <button class="a11y-btn" data-action="contrast" onclick="(function(){document.documentElement.classList.toggle('a11y-contrast');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔲 ניגודיות גבוהה</button>
+        <button class="a11y-btn" data-action="links" onclick="(function(){document.documentElement.classList.toggle('a11y-links');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔗 הדגשת קישורים</button>
+        <button class="a11y-btn" data-action="animations" onclick="(function(){document.documentElement.classList.toggle('a11y-no-anim');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">⏸ עצירת אנימציות</button>
+        <button class="a11y-btn" data-action="readable-font" onclick="(function(){document.documentElement.classList.toggle('a11y-readable');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔤 גופן קריא</button>
+        <button class="a11y-btn" data-action="big-cursor" onclick="(function(){document.documentElement.classList.toggle('a11y-big-cursor');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🖱 סמן מוגדל</button>
+        <button class="a11y-btn" data-action="reset-all" onclick="(function(){var el=document.documentElement;el.dataset.a11yFontLevel='0';el.style.fontSize='';el.classList.remove('a11y-contrast','a11y-links','a11y-no-anim','a11y-readable','a11y-big-cursor');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #B5895A; background: #fff; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #B5895A; text-align: center;">איפוס כל ההגדרות</button>
       </div>
       <div style="padding: 10px 20px 14px; border-top: 1px solid #E6DCCF; text-align: center;">
         <a href="#" style="font-size: 13px; color: #8C7A67; text-decoration: underline;">הצהרת נגישות</a>
       </div>
     </div>
   </div>
-  <script>
-  (function(){
-    var toggle=document.getElementById('a11yToggle'),panel=document.getElementById('a11yPanel'),close=document.getElementById('a11yClose');
-    var fontLevel=0,maxFont=3;
-    var states={contrast:false,links:false,animations:false,'readable-font':false,'big-cursor':false};
-    function openPanel(){panel.style.display='block';toggle.setAttribute('aria-expanded','true');close.focus();}
-    function closePanel(){panel.style.display='none';toggle.setAttribute('aria-expanded','false');toggle.focus();}
-    toggle.addEventListener('click',function(){panel.style.display==='none'?openPanel():closePanel();});
-    close.addEventListener('click',closePanel);
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.style.display!=='none')closePanel();});
-    var root=document.documentElement;
-    function setActive(btn,on){btn.style.background=on?'#3E3125':'#FCFAF6';btn.style.color=on?'#fff':'#3E3125';btn.style.borderColor=on?'#3E3125':'#E6DCCF';}
-    panel.addEventListener('click',function(e){
-      var btn=e.target.closest('[data-action]');if(!btn)return;
-      var action=btn.dataset.action;
-      if(action==='font-increase'){if(fontLevel<maxFont){fontLevel++;root.style.fontSize=(100+fontLevel*15)+'%';}}
-      else if(action==='font-decrease'){if(fontLevel>-2){fontLevel--;root.style.fontSize=(100+fontLevel*15)+'%';}}
-      else if(action==='font-reset'){fontLevel=0;root.style.fontSize='';}
-      else if(action==='contrast'){states.contrast=!states.contrast;root.classList.toggle('a11y-contrast');setActive(btn,states.contrast);}
-      else if(action==='links'){states.links=!states.links;root.classList.toggle('a11y-links');setActive(btn,states.links);}
-      else if(action==='animations'){states.animations=!states.animations;root.classList.toggle('a11y-no-anim');setActive(btn,states.animations);}
-      else if(action==='readable-font'){states['readable-font']=!states['readable-font'];root.classList.toggle('a11y-readable');setActive(btn,states['readable-font']);}
-      else if(action==='big-cursor'){states['big-cursor']=!states['big-cursor'];root.classList.toggle('a11y-big-cursor');setActive(btn,states['big-cursor']);}
-      else if(action==='reset-all'){fontLevel=0;root.style.fontSize='';root.classList.remove('a11y-contrast','a11y-links','a11y-no-anim','a11y-readable','a11y-big-cursor');for(var k in states)states[k]=false;panel.querySelectorAll('[data-action]').forEach(function(b){if(!['font-increase','font-decrease','font-reset','reset-all'].includes(b.dataset.action))setActive(b,false);});}
-    });
-  })();
-  </script>
+  <!-- Widget logic handled via inline onclick handlers above (robust against dc-runtime re-render). -->
 
   <!-- ===== FOOTER ===== -->
   <footer role="contentinfo" style="background: #3E3125; color: #C6B79F; padding: 34px 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
@@ -294,7 +269,27 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+972528368922&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;הגדרות&quot;}}">
 class Component extends DCLogic {
-  state = { name: "", phone: "", biz: "" };
+  state = {
+    name: "",
+    phone: "",
+    biz: "",
+    cookieConsent: (() => {
+      try {
+        return localStorage.getItem("cookieConsent") === "true";
+      } catch {
+        return false;
+      }
+    })()
+  };
+
+  acceptCookies() {
+    try {
+      localStorage.setItem("cookieConsent", "true");
+    } catch {
+      // If storage is blocked, we still update UI to reflect the user's choice.
+    }
+    this.setState({ cookieConsent: true });
+  }
 
   wa() {
     return (this.props.whatsappNumber || "+972528368922").replace(/[^0-9]/g, "");
@@ -323,6 +318,8 @@ class Component extends DCLogic {
       fName: this.state.name,
       fPhone: this.state.phone,
       fBiz: this.state.biz,
+      cookieConsent: this.state.cookieConsent,
+      onAcceptCookies: () => this.acceptCookies(),
       onName: (e) => this.setState({ name: e.target.value }),
       onPhone: (e) => this.setState({ phone: e.target.value }),
       onBiz: (e) => this.setState({ biz: e.target.value }),

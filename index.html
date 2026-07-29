@@ -32,6 +32,10 @@
   .a11y-readable, .a11y-readable * { font-family: Arial, Helvetica, sans-serif !important; letter-spacing: 0.03em !important; word-spacing: 0.1em !important; }
   .a11y-big-cursor, .a11y-big-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M5 2l22 16-12 2 7 15-5 2-7-15-5 12z' fill='%233E3125' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") 5 2, auto !important; }
   #a11yToggle:hover { transform: scale(1.1); }
+  #a11yWidget summary { list-style: none; }
+  #a11yWidget summary::-webkit-details-marker { display: none; }
+  #a11yPanel { display: none; }
+  #a11yWidget[open] #a11yPanel { display: block; }
 </style>
 </helmet>
 
@@ -224,37 +228,36 @@
   </sc-if>
 
   <!-- ===== ACCESSIBILITY WIDGET ===== -->
-  <div id="a11yWidget" style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; font-family: 'Assistant', sans-serif; direction: rtl;">
-    <button id="a11yToggle" aria-label="תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel" onclick="(function(){var panel=document.getElementById('a11yPanel');var toggle=document.getElementById('a11yToggle');var isOpen=panel&&panel.style.display==='block';var willOpen=!isOpen;panel.style.display=willOpen?'block':'none';toggle.setAttribute('aria-expanded',willOpen?'true':'false');if(willOpen){var close=document.getElementById('a11yClose');if(close)close.focus();}})();" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: linear-gradient(135deg,#3E3125,#5C4B3D); color: #fff; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;">
+  <details id="a11yWidget" style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; font-family: 'Assistant', sans-serif; direction: rtl;">
+    <summary id="a11yToggle" aria-label="תפריט נגישות" aria-controls="a11yPanel" style="list-style: none; width: 54px; height: 54px; border-radius: 50%; border: none; background: linear-gradient(135deg,#3E3125,#5C4B3D); color: #fff; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2.5"/><path d="M12 7v5"/><path d="M8 10l4 2 4-2"/><path d="M9 21l3-6 3 6"/></svg>
-    </button>
-    <div id="a11yPanel" role="dialog" aria-label="הגדרות נגישות" aria-modal="false" style="display: none; position: absolute; bottom: 64px; left: 0; width: 290px; background: #fff; border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); padding: 0; overflow: hidden;">
+    </summary>
+    <div id="a11yPanel" role="dialog" aria-label="הגדרות נגישות" aria-modal="false" style="position: absolute; bottom: 64px; left: 0; width: 290px; background: #fff; border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); padding: 0; overflow: hidden;">
       <div style="background: #3E3125; color: #fff; padding: 16px 20px; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
         <span>הגדרות נגישות</span>
-        <button id="a11yClose" aria-label="סגור תפריט נגישות" onclick="(function(){var panel=document.getElementById('a11yPanel');var toggle=document.getElementById('a11yToggle');if(panel)panel.style.display='none';if(toggle)toggle.setAttribute('aria-expanded','false');})();" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 22px; line-height: 1; padding: 0;">✕</button>
+        <span aria-hidden=\"true\" style=\"display:inline-block; width: 22px; height: 22px;\"></span>
       </div>
       <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <span style="font-size: 15px; font-weight: 600; color: #3E3125;">גודל גופן</span>
           <div style="display: flex; gap: 6px;">
-            <button class="a11y-btn" data-action="font-decrease" aria-label="הקטנת גופן" onclick="(function(){var el=document.documentElement;var lvl=parseInt(el.dataset.a11yFontLevel||'0',10);if(lvl>-2)lvl--;el.dataset.a11yFontLevel=String(lvl);el.style.fontSize=(lvl===0)?'':(100+lvl*15)+'%';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א-</button>
-            <button class="a11y-btn" data-action="font-reset" aria-label="איפוס גודל גופן" onclick="(function(){var el=document.documentElement;el.dataset.a11yFontLevel='0';el.style.fontSize='';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 14px; font-weight: 700; color: #5C4B3D;">⟲</button>
-            <button class="a11y-btn" data-action="font-increase" aria-label="הגדלת גופן" onclick="(function(){var el=document.documentElement;var lvl=parseInt(el.dataset.a11yFontLevel||'0',10);if(lvl<3)lvl++;el.dataset.a11yFontLevel=String(lvl);el.style.fontSize=(lvl===0)?'':(100+lvl*15)+'%';})();" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א+</button>
+            <button class="a11y-btn" type="button" data-action="font-decrease" aria-label="הקטנת גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א-</button>
+            <button class="a11y-btn" type="button" data-action="font-reset" aria-label="איפוס גודל גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 14px; font-weight: 700; color: #5C4B3D;">⟲</button>
+            <button class="a11y-btn" type="button" data-action="font-increase" aria-label="הגדלת גופן" style="width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-size: 18px; font-weight: 700; color: #5C4B3D;">א+</button>
           </div>
         </div>
-        <button class="a11y-btn" data-action="contrast" onclick="(function(){document.documentElement.classList.toggle('a11y-contrast');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔲 ניגודיות גבוהה</button>
-        <button class="a11y-btn" data-action="links" onclick="(function(){document.documentElement.classList.toggle('a11y-links');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔗 הדגשת קישורים</button>
-        <button class="a11y-btn" data-action="animations" onclick="(function(){document.documentElement.classList.toggle('a11y-no-anim');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">⏸ עצירת אנימציות</button>
-        <button class="a11y-btn" data-action="readable-font" onclick="(function(){document.documentElement.classList.toggle('a11y-readable');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔤 גופן קריא</button>
-        <button class="a11y-btn" data-action="big-cursor" onclick="(function(){document.documentElement.classList.toggle('a11y-big-cursor');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🖱 סמן מוגדל</button>
-        <button class="a11y-btn" data-action="reset-all" onclick="(function(){var el=document.documentElement;el.dataset.a11yFontLevel='0';el.style.fontSize='';el.classList.remove('a11y-contrast','a11y-links','a11y-no-anim','a11y-readable','a11y-big-cursor');})();" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #B5895A; background: #fff; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #B5895A; text-align: center;">איפוס כל ההגדרות</button>
+        <button class="a11y-btn" type="button" data-action="contrast" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔲 ניגודיות גבוהה</button>
+        <button class="a11y-btn" type="button" data-action="links" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔗 הדגשת קישורים</button>
+        <button class="a11y-btn" type="button" data-action="animations" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">⏸ עצירת אנימציות</button>
+        <button class="a11y-btn" type="button" data-action="readable-font" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🔤 גופן קריא</button>
+        <button class="a11y-btn" type="button" data-action="big-cursor" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #E6DCCF; background: #FCFAF6; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 600; color: #3E3125; text-align: right;">🖱 סמן מוגדל</button>
+        <button class="a11y-btn" type="button" data-action="reset-all" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #B5895A; background: #fff; cursor: pointer; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #B5895A; text-align: center;">איפוס כל ההגדרות</button>
       </div>
       <div style="padding: 10px 20px 14px; border-top: 1px solid #E6DCCF; text-align: center;">
         <a href="#" style="font-size: 13px; color: #8C7A67; text-decoration: underline;">הצהרת נגישות</a>
       </div>
     </div>
-  </div>
-  <!-- Widget logic handled via inline onclick handlers above (robust against dc-runtime re-render). -->
+  </details>
 
   <!-- ===== FOOTER ===== -->
   <footer role="contentinfo" style="background: #3E3125; color: #C6B79F; padding: 34px 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
@@ -267,6 +270,47 @@
 
 </div>
 </x-dc>
+<script>
+(function(){
+  var root = document.documentElement;
+  function setFontLevel(lvl){
+    root.dataset.a11yFontLevel = String(lvl);
+    root.style.fontSize = (lvl === 0) ? '' : (100 + lvl * 15) + '%';
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target && e.target.closest ? e.target.closest('[data-action]') : null;
+    if(!btn) return;
+    var action = btn.getAttribute('data-action');
+    var lvl;
+    if(action === 'font-increase'){
+      lvl = parseInt(root.dataset.a11yFontLevel || '0', 10);
+      if(lvl < 3) lvl++;
+      setFontLevel(lvl);
+    } else if(action === 'font-decrease'){
+      lvl = parseInt(root.dataset.a11yFontLevel || '0', 10);
+      if(lvl > -2) lvl--;
+      setFontLevel(lvl);
+    } else if(action === 'font-reset' || action === 'reset-all'){
+      setFontLevel(0);
+      if(action === 'reset-all'){
+        root.classList.remove('a11y-contrast','a11y-links','a11y-no-anim','a11y-readable','a11y-big-cursor');
+      }
+    } else if(action === 'contrast'){
+      root.classList.toggle('a11y-contrast');
+    } else if(action === 'links'){
+      root.classList.toggle('a11y-links');
+    } else if(action === 'animations'){
+      root.classList.toggle('a11y-no-anim');
+    } else if(action === 'readable-font'){
+      root.classList.toggle('a11y-readable');
+    } else if(action === 'big-cursor'){
+      root.classList.toggle('a11y-big-cursor');
+    } else if(action === 'reset-all'){
+      // handled above
+    }
+  });
+})();
+</script>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+972528368922&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;הגדרות&quot;}}">
 class Component extends DCLogic {
   state = {

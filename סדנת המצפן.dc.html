@@ -45,7 +45,8 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -84,7 +85,23 @@
   <header role="banner" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 10px 6vw; background: rgba(248,246,241,0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(92,75,61,0.14);">
     <nav aria-label="ניווט ראשי" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
     <a href="#" style="display: flex; align-items: center; text-decoration: none;" aria-label="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן — דף הבית">
-      <img src="assets/logo-light.png" alt="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" width="797" height="646" style="height: 72px; width: auto; max-width: 42vw; object-fit: contain; display: block;" loading="eager" decoding="async">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img" aria-label="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" style="height: 64px; width: auto; max-width: 42vw; object-fit: contain; display: block;">
+  <defs>
+    <linearGradient id="logoHdr-gold" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#E0C49A"/>
+      <stop offset="40%" stop-color="#D4B489"/>
+      <stop offset="70%" stop-color="#B5895A"/>
+      <stop offset="100%" stop-color="#9A7038"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#logoHdr-gold)" transform="translate(140, 58)">
+    <text x="-10" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="54" font-weight="700" letter-spacing="-3">D</text>
+    <text x="16" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="50" font-weight="600" letter-spacing="-2">K</text>
+    <path d="M -32 10 C -44 6, -46 -8, -36 -16 C -28 -22, -20 -12, -22 -2 C -23 6, -18 12, -10 10" fill="none" stroke="url(#logoHdr-gold)" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+  <text x="140" y="112" text-anchor="middle" font-family="Frank Ruhl Libre, Georgia, serif" font-size="34" font-weight="700" fill="url(#logoHdr-gold)">דבי קליין</text>
+  <text x="140" y="142" text-anchor="middle" font-family="Assistant, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#9A7038">ניהול סושיאל ואסטרטגיית תוכן</text>
+</svg>
     </a>
     <a href="{{ waLink }}" target="_blank" rel="noopener" role="button" aria-label="שריון מקום — נפתח בוואטסאפ בחלון חדש" style="background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; box-shadow: 0 6px 18px rgba(181,137,90,0.28);">שריון מקום</a>
     </nav>
@@ -301,7 +318,23 @@
   <!-- ===== FOOTER ===== -->
   <footer role="contentinfo" style="background: #3E3125; color: #C6B79F; padding: 34px 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
     <div style="display: flex; align-items: center; gap: 12px;">
-      <img src="assets/logo-light.png" alt="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" width="797" height="646" style="height: 56px; width: auto; object-fit: contain; display: block;" loading="lazy" decoding="async">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img" aria-label="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" style="height: 52px; width: auto; object-fit: contain; display: block;">
+  <defs>
+    <linearGradient id="logoFtr-gold" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#E0C49A"/>
+      <stop offset="40%" stop-color="#D4B489"/>
+      <stop offset="70%" stop-color="#B5895A"/>
+      <stop offset="100%" stop-color="#9A7038"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#logoFtr-gold)" transform="translate(140, 58)">
+    <text x="-10" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="54" font-weight="700" letter-spacing="-3">D</text>
+    <text x="16" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="50" font-weight="600" letter-spacing="-2">K</text>
+    <path d="M -32 10 C -44 6, -46 -8, -36 -16 C -28 -22, -20 -12, -22 -2 C -23 6, -18 12, -10 10" fill="none" stroke="url(#logoFtr-gold)" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+  <text x="140" y="112" text-anchor="middle" font-family="Frank Ruhl Libre, Georgia, serif" font-size="34" font-weight="700" fill="url(#logoFtr-gold)">דבי קליין</text>
+  <text x="140" y="142" text-anchor="middle" font-family="Assistant, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#9A7038">ניהול סושיאל ואסטרטגיית תוכן</text>
+</svg>
       <div style="font-family: 'Frank Ruhl Libre', serif; font-size: 17px; color: #EDE4D5;">דבי קליין · סדנת המצפן</div>
     </div>
     <div style="font-size: 14px;">ניהול סושיאל ואסטרטגיית תוכן · הצפון</div>

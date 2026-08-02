@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" role="img" aria-label="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן">
+  <defs>
+    <linearGradient id="gold" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#E0C49A"/>
+      <stop offset="40%" stop-color="#D4B489"/>
+      <stop offset="70%" stop-color="#B5895A"/>
+      <stop offset="100%" stop-color="#9A7038"/>
+    </linearGradient>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@500;600&amp;family=Frank+Ruhl+Libre:wght@700&amp;family=Playfair+Display:wght@600;700&amp;display=swap');
+    ]]></style>
+  </defs>
+
+  <g fill="url(#gold)" transform="translate(140, 58)">
+    <text x="-10" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="54" font-weight="700" letter-spacing="-3">D</text>
+    <text x="16" y="0" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="50" font-weight="600" letter-spacing="-2">K</text>
+    <path d="M -32 10 C -44 6, -46 -8, -36 -16 C -28 -22, -20 -12, -22 -2 C -23 6, -18 12, -10 10" fill="none" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+
+  <text x="140" y="112" text-anchor="middle" font-family="Frank Ruhl Libre, Georgia, serif" font-size="34" font-weight="700" fill="url(#gold)">דבי קליין</text>
+  <text x="140" y="142" text-anchor="middle" font-family="Assistant, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#9A7038">ניהול סושיאל ואסטרטגיית תוכן</text>
+</svg>

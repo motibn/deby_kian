@@ -116,8 +116,81 @@
   #a11yWidget[open] #a11yPanel { display: block; }
   .a11y-btn.is-active { background: rgba(181,137,90,0.18) !important; border-color: #B5895A !important; box-shadow: inset 0 0 0 1px #B5895A; }
   html.cookie-open #a11yWidget { bottom: 150px; }
-  @media (max-width: 640px) { html.cookie-open #a11yWidget { bottom: 200px; } }
+  html.cookie-open #waFab { bottom: 150px; }
+  @media (max-width: 640px) {
+    html.cookie-open #a11yWidget { bottom: 200px; }
+    html.cookie-open #waFab { bottom: 200px; }
+  }
   #cookieBanner { animation: cookieIn 0.32s ease-out; }
+  #waFab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s, bottom 0.2s;
+  }
+  #waFab:hover { transform: scale(1.08); box-shadow: 0 8px 26px rgba(37, 211, 102, 0.55); }
+  #waFab:focus-visible { outline: 3px solid #128C7E; outline-offset: 3px; }
+
+  /* ===== Responsive layout ===== */
+  .site-header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 10px 6vw; background: rgba(248,246,241,0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(92,75,61,0.14); }
+  .site-logo { height: 96px; width: auto; max-width: 48vw; object-fit: contain; display: block; }
+  .header-cta { background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; box-shadow: 0 6px 18px rgba(181,137,90,0.28); min-height: 44px; display: inline-flex; align-items: center; }
+  .hero-grid { position: relative; padding: 6vw 6vw 5vw; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5vw; align-items: center; background: radial-gradient(120% 90% at 85% 0%, #EDE4D5 0%, #F8F6F1 55%); }
+  .hero-title { font-family: 'Frank Ruhl Libre', serif; font-weight: 900; font-size: clamp(40px, 5.2vw, 72px); line-height: 1.12; margin: 0 0 22px; color: #3E3125; text-wrap: balance; }
+  .hero-cta { background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 17px 34px; border-radius: 999px; font-weight: 700; font-size: 18px; box-shadow: 0 12px 30px rgba(181,137,90,0.32); min-height: 44px; display: inline-flex; align-items: center; }
+  .hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  .hero-compass { position: relative; width: min(34vw, 380px); height: min(34vw, 380px); animation: floaty 6s ease-in-out infinite; }
+  .hero-stats { display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap; }
+  .hero-stat-divider { width: 1px; background: rgba(92,75,61,0.18); }
+  .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: right; }
+  .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 1000px; margin: 0 auto; }
+  .method-deco { position: absolute; top: -10px; left: -6px; font-family: 'Frank Ruhl Libre', serif; font-size: 120px; font-weight: 900; color: rgba(197,160,110,0.12); line-height: 1; }
+  .split-grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; }
+  .split-grid--about { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
+  .split-grid--register { max-width: 1000px; gap: 48px; }
+  .section-pad { padding: 6vw 6vw; }
+  .wa-submit { margin-top: 6px; text-align: center; display: block; background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 18px; box-shadow: 0 12px 26px rgba(181,137,90,0.32); min-height: 48px; }
+
+  @media (max-width: 1199px) {
+    .site-logo { height: 72px; }
+    .hero-grid { gap: 32px; padding: 5vw 5vw 4vw; }
+    .split-grid, .split-grid--about, .split-grid--register { gap: 32px; }
+    .pain-grid { gap: 14px; }
+    .method-grid { gap: 20px; }
+    .section-pad { padding: 5vw 5vw; }
+  }
+
+  @media (max-width: 767px) {
+    .site-header { padding: 8px 5vw; }
+    .site-logo { height: 56px; max-width: 42vw; }
+    .header-cta { padding: 10px 16px; font-size: 14px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; padding: 36px 5vw 40px; }
+    .hero-title { font-size: clamp(28px, 8vw, 40px); margin-bottom: 16px; }
+    .hero-cta { padding: 14px 26px; font-size: 16px; width: 100%; justify-content: center; }
+    .hero-visual { order: 2; }
+    .hero-compass { width: min(70vw, 260px); height: min(70vw, 260px); }
+    .hero-stats { gap: 16px 24px; margin-top: 28px; }
+    .hero-stat-divider { display: none; }
+    .pain-grid,
+    .method-grid,
+    .split-grid,
+    .split-grid--about,
+    .split-grid--register { grid-template-columns: 1fr; gap: 20px; }
+    .method-deco { font-size: 80px; }
+    .method-grid > div { padding: 24px !important; }
+    .section-pad { padding: 48px 5vw; }
+    html.cookie-open #a11yWidget { bottom: 200px; }
+  }
 </style>
 </helmet>
 
@@ -125,40 +198,40 @@
 <div dir="rtl" style="font-family: 'Assistant', sans-serif; color: #3E3125; background: #F8F6F1; overflow-x: hidden; line-height: 1.6;">
 
   <!-- ===== HEADER ===== -->
-  <header role="banner" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 10px 6vw; background: rgba(248,246,241,0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(92,75,61,0.14);">
+  <header role="banner" class="site-header">
     <nav aria-label="ניווט ראשי" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
     <a href="/" style="display: flex; align-items: center; text-decoration: none;" aria-label="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן — דף הבית">
-      <img src="assets/logo-brand.png" alt="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" width="570" height="470" style="height: 96px; width: auto; max-width: 48vw; object-fit: contain; display: block;" loading="eager" decoding="async">
+      <img src="assets/logo-brand.png" alt="דבי קליין — ניהול סושיאל ואסטרטגיית תוכן" width="570" height="470" class="site-logo" loading="eager" decoding="async">
     </a>
-    <a href="{{ waLink }}" target="_blank" rel="noopener" role="button" aria-label="שריון מקום — נפתח בוואטסאפ בחלון חדש" style="background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; box-shadow: 0 6px 18px rgba(181,137,90,0.28);">שריון מקום</a>
+    <a href="{{ waLink }}" target="_blank" rel="noopener" role="button" aria-label="שריון מקום — נפתח בוואטסאפ בחלון חדש" class="header-cta">שריון מקום</a>
     </nav>
   </header>
 
   <main id="main">
   <!-- ===== HERO ===== -->
-  <section aria-label="סדנת המצפן — מידע כללי" style="position: relative; padding: 6vw 6vw 5vw; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5vw; align-items: center; background: radial-gradient(120% 90% at 85% 0%, #EDE4D5 0%, #F8F6F1 55%);">
+  <section aria-label="סדנת המצפן — מידע כללי" class="hero-grid">
     <div style="position: relative; z-index: 2;">
       <div style="display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border: 1px solid rgba(197,160,110,0.45); border-radius: 999px; font-size: 13px; font-weight: 600; color: #B5895A; letter-spacing: 0.5px; margin-bottom: 26px;">
         <span style="width: 7px; height: 7px; border-radius: 50%; background: #C5A06E; display: inline-block;"></span>
         3.9 · יום חמישי · 10:00 · מושב כברי
       </div>
-      <h1 style="font-family: 'Frank Ruhl Libre', serif; font-weight: 900; font-size: clamp(40px, 5.2vw, 72px); line-height: 1.12; margin: 0 0 22px; color: #3E3125; text-wrap: balance;">סדנה לבעלי עסקים בצפון<span style="color: #B5895A;">- הזדמנות חד פעמית</span></h1>
+      <h1 class="hero-title">סדנה לבעלי עסקים בצפון<span style="color: #B5895A;">- הזדמנות חד פעמית</span></h1>
       <p style="font-size: clamp(17px, 1.5vw, 21px); color: #5C4B3D; max-width: 560px; margin: 0 0 34px;">סדנה מעשית של 4 שעות לבעלי עסקים מהצפון, שתעזור לכם להפסיק לחכות שהמציאות תשתנה — ולהתחיל לפעול.</p>
       <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-        <a href="{{ waLink }}" target="_blank" rel="noopener" role="button" aria-label="לשריון מקום בסדנה — נפתח בוואטסאפ בחלון חדש" style="background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 17px 34px; border-radius: 999px; font-weight: 700; font-size: 18px; box-shadow: 0 12px 30px rgba(181,137,90,0.32);">לשריון מקום בסדנה</a>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" role="button" aria-label="לשריון מקום בסדנה — נפתח בוואטסאפ בחלון חדש" class="hero-cta">לשריון מקום בסדנה</a>
         <span style="font-size: 14px; color: #8C7A67; font-weight: 600;">מוגבל ל-10 משתתפים בלבד</span>
       </div>
-      <div style="display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap;">
+      <div class="hero-stats">
         <div><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 30px; font-weight: 700; color: #8C7A67;">4 שעות</div><div style="font-size: 13px; color: #7A6E5E;">סדנה מעשית וממוקדת</div></div>
-        <div style="width: 1px; background: rgba(92,75,61,0.18);"></div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
         <div><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 30px; font-weight: 700; color: #8C7A67;">3.9</div><div style="font-size: 13px; color: #7A6E5E;">יום חמישי · 10:00</div></div>
-        <div style="width: 1px; background: rgba(92,75,61,0.18);"></div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
         <div><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 30px; font-weight: 700; color: #8C7A67;">10 מקומות</div><div style="font-size: 13px; color: #7A6E5E;">אינטימי ואישי</div></div>
       </div>
     </div>
-    <div style="position: relative; z-index: 2; display: flex; justify-content: center; align-items: center;">
+    <div class="hero-visual">
       <div style="position: absolute; width: min(38vw, 420px); height: min(38vw, 420px); border-radius: 50%; background: radial-gradient(circle, rgba(197,160,110,0.22), transparent 70%); filter: blur(6px);"></div>
-      <div style="position: relative; width: min(34vw, 380px); height: min(34vw, 380px); animation: floaty 6s ease-in-out infinite;">
+      <div class="hero-compass">
         <svg sc-camel-view-box="0 0 400 400" role="img" aria-label="אילוסטרציית מצפן עם ארבעת הכיוונים: צפון, מזרח, דרום, מערב" style="width: 100%; height: 100%; filter: drop-shadow(0 20px 40px rgba(92,75,61,0.22));">
           <circle cx="200" cy="200" r="185" fill="#FCFAF6" stroke="#E6DCCF" stroke-width="2"></circle>
           <circle cx="200" cy="200" r="160" fill="none" stroke="#E6DCCF" stroke-width="1"></circle>
@@ -177,13 +250,13 @@
   </section>
 
   <!-- ===== PAIN ===== -->
-  <section aria-label="אתגרים של בעלי עסקים" style="padding: 6vw 6vw; background: #5C4B3D; color: #EDE4D5;">
+  <section aria-label="אתגרים של בעלי עסקים" class="section-pad" style="background: #5C4B3D; color: #EDE4D5;">
     <div style="max-width: 900px; margin: 0 auto; text-align: center;">
       <span style="font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #D4B489; font-weight: 600;">רגע של כנות</span>
       <h2 style="font-family: 'Frank Ruhl Libre', serif; font-weight: 700; font-size: clamp(26px, 3.2vw, 44px); line-height: 1.25; margin: 18px 0 26px;">מרגישים שהעסק מושפע מחוסר היציבות? שהכול תלוי באוויר?</h2>
       <p style="font-size: clamp(17px, 1.5vw, 22px); color: #E6DCCF; max-width: 720px; margin: 0 auto 12px;">המציאות כנראה לא תשתנה מחר בבוקר — אבל <em style="color: #fff; font-style: normal; font-weight: 700;">הדרך שבה אנחנו מנהלים את העסק שלנו כן.</em></p>
       <p style="font-size: 17px; color: #C6B79F; max-width: 680px; margin: 0 auto 44px;">רוב העסקים נתקעים לא בגלל השוק — אלא כי אין להם כיוון ברור, הם מפחדים מחשיפה, ומחכים ל"זמן המתאים" שאף פעם לא באמת מגיע.</p>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: right;">
+      <div class="pain-grid">
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,110,0.25); border-radius: 16px; padding: 24px;"><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 20px; font-weight: 700; color: #D4B489; margin-bottom: 8px;">חוסר כיוון</div><div style="font-size: 15px; color: #D9CBB4;">מפרסמים בלי אסטרטגיה ומקווים שמשהו יעבוד.</div></div>
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,110,0.25); border-radius: 16px; padding: 24px;"><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 20px; font-weight: 700; color: #D4B489; margin-bottom: 8px;">פחד מחשיפה</div><div style="font-size: 15px; color: #D9CBB4;">יודעים שצריך להיראות — אבל לא בטוחים מה להגיד ואיך.</div></div>
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,110,0.25); border-radius: 16px; padding: 24px;"><div style="font-family: 'Frank Ruhl Libre', serif; font-size: 20px; font-weight: 700; color: #D4B489; margin-bottom: 8px;">חוסר עקביות</div><div style="font-size: 15px; color: #D9CBB4;">מתחילים בהתלהבות ונעלמים אחרי שבועיים.</div></div>
@@ -192,33 +265,33 @@
   </section>
 
   <!-- ===== SOLUTION / COMPASS METHOD ===== -->
-  <section aria-label="שיטת המצפן — הפתרון" style="padding: 6vw 6vw; background: #F8F6F1;">
+  <section aria-label="שיטת המצפן — הפתרון" class="section-pad" style="background: #F8F6F1;">
     <div style="text-align: center; max-width: 760px; margin: 0 auto 54px;">
       <span style="font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #B5895A; font-weight: 600;">הפתרון</span>
       <h2 style="font-family: 'Frank Ruhl Libre', serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 50px); margin: 16px 0 18px; color: #3E3125;">שיטת המצפן</h2>
       <p style="font-size: 18px; color: #5C4B3D;">ארבעה כיוונים שהופכים ערפל לתוכנית פעולה ברורה. בסוף הסדנה תדעו בדיוק לאן להוביל את הנוכחות העסקית שלכם.</p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 1000px; margin: 0 auto;">
+    <div class="method-grid">
       <div style="background: #FCFAF6; border: 1px solid rgba(92,75,61,0.14); border-radius: 20px; padding: 34px; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -10px; left: -6px; font-family: 'Frank Ruhl Libre', serif; font-size: 120px; font-weight: 900; color: rgba(197,160,110,0.12); line-height: 1;">צ</div>
+        <div class="method-deco" aria-hidden="true">צ</div>
         <div style="position: relative;"><span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #fff; background: linear-gradient(135deg,#D4B489,#B5895A); padding: 5px 14px; border-radius: 999px;">צפון · דיוק</span>
         <h3 style="font-family: 'Frank Ruhl Libre', serif; font-size: 26px; font-weight: 700; margin: 18px 0 10px; color: #5C4B3D;">מי הלקוח ומה באמת כואב לו</h3>
         <p style="font-size: 16px; color: #6E5D4C; margin: 0;">מפסיקים לדבר לכולם. מגדירים את הלקוח האידיאלי ואת הכאב האמיתי שלו — כדי שכל מסר יפגע במטרה.</p></div>
       </div>
       <div style="background: #FCFAF6; border: 1px solid rgba(92,75,61,0.14); border-radius: 20px; padding: 34px; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -10px; left: -6px; font-family: 'Frank Ruhl Libre', serif; font-size: 120px; font-weight: 900; color: rgba(197,160,110,0.12); line-height: 1;">מז</div>
+        <div class="method-deco" aria-hidden="true">מז</div>
         <div style="position: relative;"><span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #fff; background: linear-gradient(135deg,#D4B489,#B5895A); padding: 5px 14px; border-radius: 999px;">מזרח · בידול</span>
         <h3 style="font-family: 'Frank Ruhl Libre', serif; font-size: 26px; font-weight: 700; margin: 18px 0 10px; color: #5C4B3D;">למה שיבחרו דווקא בך</h3>
         <p style="font-size: 16px; color: #6E5D4C; margin: 0;">הסיפור, הערכים והייחוד שלך — מה שגורם ללקוח לבחור בך ולא במתחרה שנראה בדיוק אותו דבר.</p></div>
       </div>
       <div style="background: #FCFAF6; border: 1px solid rgba(92,75,61,0.14); border-radius: 20px; padding: 34px; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -10px; left: -6px; font-family: 'Frank Ruhl Libre', serif; font-size: 120px; font-weight: 900; color: rgba(197,160,110,0.12); line-height: 1;">ד</div>
+        <div class="method-deco" aria-hidden="true">ד</div>
         <div style="position: relative;"><span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #fff; background: linear-gradient(135deg,#D4B489,#B5895A); padding: 5px 14px; border-radius: 999px;">דרום · אמון</span>
         <h3 style="font-family: 'Frank Ruhl Libre', serif; font-size: 26px; font-weight: 700; margin: 18px 0 10px; color: #5C4B3D;">איך גורמים ללקוח להרגיש בטוח</h3>
         <p style="font-size: 16px; color: #6E5D4C; margin: 0;">בונים אמון דרך תוכן — כך שכשהלקוח מוכן לקנות, אתם כבר האפשרות הטבעית והבטוחה עבורו.</p></div>
       </div>
       <div style="background: #FCFAF6; border: 1px solid rgba(92,75,61,0.14); border-radius: 20px; padding: 34px; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -10px; left: -6px; font-family: 'Frank Ruhl Libre', serif; font-size: 120px; font-weight: 900; color: rgba(197,160,110,0.12); line-height: 1;">מע</div>
+        <div class="method-deco" aria-hidden="true">מע</div>
         <div style="position: relative;"><span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #fff; background: linear-gradient(135deg,#D4B489,#B5895A); padding: 5px 14px; border-radius: 999px;">מערב · נוכחות</span>
         <h3 style="font-family: 'Frank Ruhl Libre', serif; font-size: 26px; font-weight: 700; margin: 18px 0 10px; color: #5C4B3D;">שגרת שיווק פשוטה ועקבית</h3>
         <p style="font-size: 16px; color: #6E5D4C; margin: 0;">"עדיף לעשות מעט ולהתמיד, מאשר הרבה ולהיעלם." בונים מערכת שיווק שאפשר לתחזק גם בעומס.</p></div>
@@ -227,8 +300,8 @@
   </section>
 
   <!-- ===== DELIVERABLES / HOT SEAT ===== -->
-  <section aria-label="הכיסא החם וחבילת מתנות" style="padding: 6vw 6vw; background: linear-gradient(160deg, #EDE4D5, #E6DCCF);">
-    <div style="max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center;">
+  <section aria-label="הכיסא החם וחבילת מתנות" class="section-pad" style="background: linear-gradient(160deg, #EDE4D5, #E6DCCF);">
+    <div class="split-grid">
       <div>
         <span style="font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #B5895A; font-weight: 600;">רגע השיא</span>
         <h2 style="font-family: 'Frank Ruhl Libre', serif; font-weight: 900; font-size: clamp(28px, 3.4vw, 46px); margin: 14px 0 18px; color: #3E3125;">"הכיסא החם"</h2>
@@ -249,8 +322,8 @@
   </section>
 
   <!-- ===== AUTHORITY / ABOUT ===== -->
-  <section id="about" aria-label="אודות דבי קליין" style="padding: 6vw 6vw; background: #F8F6F1;">
-    <div style="max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center;">
+  <section id="about" aria-label="אודות דבי קליין" class="section-pad" style="background: #F8F6F1;">
+    <div class="split-grid split-grid--about">
       <div style="position: relative;">
         <div style="position: absolute; inset: 16px -16px -16px 16px; border: 1.5px solid #C5A06E; border-radius: 20px; z-index: 0;"></div>
         <div style="position: relative; z-index: 1; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 50px rgba(92,75,61,0.2); aspect-ratio: 1/1;">
@@ -272,8 +345,8 @@
   </section>
 
   <!-- ===== REGISTRATION ===== -->
-  <section id="register" aria-label="הרשמה לסדנה" style="padding: 6vw 6vw 7vw; background: #5C4B3D; color: #EDE4D5;">
-    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+  <section id="register" aria-label="הרשמה לסדנה" class="section-pad" style="padding-bottom: 7vw; background: #5C4B3D; color: #EDE4D5;">
+    <div class="split-grid split-grid--register">
       <div>
         <span style="font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #D4B489; font-weight: 600;">פרטים והרשמה</span>
         <h2 style="font-family: 'Frank Ruhl Libre', serif; font-weight: 900; font-size: clamp(28px, 3.4vw, 48px); margin: 14px 0 26px; line-height: 1.15;">שריון מקום בסדנה</h2>
@@ -292,7 +365,7 @@
           <label style="display: block;"><span style="display: block; font-size: 14px; font-weight: 600; color: #6E5D4C; margin-bottom: 6px;">שם מלא</span><input type="text" value="{{ fName }}" sc-camel-on-input="{{ onName }}" placeholder="איך קוראים לך?" aria-required="true" autocomplete="name" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E6DCCF; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;" style-focus="border-color: #C5A06E; width: 100%; padding: 13px 16px; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;"></label>
           <label style="display: block;"><span style="display: block; font-size: 14px; font-weight: 600; color: #6E5D4C; margin-bottom: 6px;">טלפון</span><input type="tel" value="{{ fPhone }}" sc-camel-on-input="{{ onPhone }}" placeholder="050-0000000" aria-required="true" autocomplete="tel" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E6DCCF; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;" style-focus="border-color: #C5A06E; width: 100%; padding: 13px 16px; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;"></label>
           <label style="display: block;"><span style="display: block; font-size: 14px; font-weight: 600; color: #6E5D4C; margin-bottom: 6px;">סוג / שם העסק</span><input type="text" value="{{ fBiz }}" sc-camel-on-input="{{ onBiz }}" placeholder="במה העסק שלך עוסק?" autocomplete="organization" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E6DCCF; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;" style-focus="border-color: #C5A06E; width: 100%; padding: 13px 16px; border-radius: 12px; font-family: 'Assistant', sans-serif; font-size: 16px; color: #3E3125; background: #fff;"></label>
-          <a href="{{ formWaLink }}" target="_blank" rel="noopener" role="button" aria-label="שריון מקום בוואטסאפ — נפתח בחלון חדש" style="margin-top: 6px; text-align: center; display: block; background: linear-gradient(135deg,#D4B489,#B5895A); color: #fff; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 18px; box-shadow: 0 12px 26px rgba(181,137,90,0.32);">שריון מקום בוואטסאפ ←</a>
+          <a href="{{ formWaLink }}" target="_blank" rel="noopener" role="button" aria-label="שריון מקום בוואטסאפ — נפתח בחלון חדש" class="wa-submit">שריון מקום בוואטסאפ ←</a>
           <p style="font-size: 12px; color: #7A6E5E; text-align: center; margin: 4px 0 0;">הפרטים נשלחים ישירות לדבי · ללא ספאם · תשובה עוד היום</p>
         </div>
       </div>
@@ -353,6 +426,11 @@
       </div>
     </div>
   </details>
+
+  <!-- ===== WHATSAPP FAB ===== -->
+  <a id="waFab" href="{{ waLink }}" target="_blank" rel="noopener" aria-label="שלחי הודעה לדבי בוואטסאפ">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <!-- ===== FOOTER ===== -->
   <footer role="contentinfo" style="background: #3E3125; color: #C6B79F; padding: 34px 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
@@ -528,12 +606,12 @@ class Component extends DCLogic {
       const n = this.state.name.trim();
       const p = this.state.phone.trim();
       const b = this.state.biz.trim();
-      msg = "היי דבי! אשמח לשריין מקום בסדנת המצפן.";
+      msg = "היי דבי 👋 אשמח לשריין מקום בסדנת המצפן.";
       if (n) msg += "\nשם: " + n;
       if (p) msg += "\nטלפון: " + p;
       if (b) msg += "\nהעסק: " + b;
     } else {
-      msg = "היי דבי! ראיתי את דף הסדנה ואשמח לפרטים על שריון מקום בסדנת המצפן.";
+      msg = "היי דבי 👋 הגעתי מדף סדנת המצפן באתר ואשמח לפרטים ולשריון מקום.";
     }
     return "https://wa.me/" + this.wa() + "?text=" + encodeURIComponent(msg);
   }
